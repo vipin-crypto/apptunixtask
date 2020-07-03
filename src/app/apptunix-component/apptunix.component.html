@@ -1,0 +1,25 @@
+<div class="main mt-5">
+  <div class="row">
+<div class="col-md-2 p-1" style="border: 1px dashed #1976d2;" *ngFor="let i of [0,1,2,3,4,5]">
+    <div style="height:150px" appDragDrop
+         *ngIf="!fileList[i]" 
+         (click)="fileInput.click()"
+         (onFileDropped)="fileupload($event, i)">
+         <input class="file-upload-input" 
+                type='file' 
+                #fileInput 
+                (change)="fileupload($event.target.files, i);" 
+                accept="image/*" 
+                style="visibility: hidden;" />
+      <div class="text-center">
+        <span>Click to upload picture</span>
+        <br>
+        <i class="fa fa-picture-o" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="imgDiv" *ngIf="fileList[i]" [style.background-image]="'url(' + fileList[i] + ')'">
+      <i class="fa fa-times-circle"  (click)="deleteImage(i)" aria-hidden="true" ></i>
+    </div>
+</div>
+</div>
+</div>
